@@ -3,22 +3,21 @@
  * @Date: 2023-01-07 22:21:01
  * @LastEditors: Oliva-cgf 1756303507@qq.com
  * @LastEditTime: 2023-01-08 20:59:03
- * @FilePath: /youzheng/lib/pages/FoundPage.dart
+ * @FilePath: /youzheng/lib/pages/HomeDetailPage.dart
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import 'package:flutter/material.dart';
 import 'package:youzheng/component/FlexWrap.dart';
 
-class FoundPage extends StatelessWidget {
-  const FoundPage({super.key});
+class HomeDetailPage extends StatelessWidget {
+  const HomeDetailPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return ListView(
-      shrinkWrap: true,
+      // shrinkWrap: true,
       children: <Widget>[
         Container(
-            padding: const EdgeInsets.all(20),
             decoration: const BoxDecoration(
               image: DecorationImage(
                 fit: BoxFit.cover,
@@ -26,53 +25,61 @@ class FoundPage extends StatelessWidget {
                     'https://img1.baidu.com/it/u=1845556535,2973910963&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500'),
               ),
             ),
-            child: Column(
-              children: [
-                const SizedBox(height: 20),
-                const Align(
-                  alignment: Alignment.centerRight,
-                  child: Text(
-                    "01/17",
-                    style: TextStyle(
-                      color: Colors.white,
-                      inherit: false,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 150),
-                Row(
-                  children: const [
-                    Icon(Icons.lock_clock, color: Colors.white),
-                    Text(
-                      "30 DAYS",
-                      style: TextStyle(
-                        color: Colors.white,
-                        inherit: false, //2.不继承默认样式
-                      ),
-                    )
-                  ],
-                ),
-                Row(
-                  children: const [
-                    Icon(Icons.lock_clock, color: Colors.white),
-                    Text(
-                      "30 DAYS",
-                      style: TextStyle(
-                        color: Colors.white,
-                        inherit: false, //2.不继承默认样式
-                      ),
-                    )
-                  ],
-                ),
-                const SizedBox(height: 20),
-                Stack(children: const <Widget>[
-                  SizedBox(height: 20),
+            child: Stack(children: <Widget>[
+              Column(
+                children: [
+                  const SizedBox(height: 20),
+                  Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: Wrap(
+                        children: [
+                          const Align(
+                            alignment: Alignment.centerRight,
+                            child: Text(
+                              "01/17",
+                              style: TextStyle(
+                                color: Colors.white,
+                                inherit: false,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 150),
+                          Row(
+                            children: const [
+                              Icon(Icons.timer, color: Colors.white),
+                              Text(
+                                "30 DAYS",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  inherit: false, //2.不继承默认样式
+                                ),
+                              )
+                            ],
+                          ),
+                          const SizedBox(height: 20),
+                          Row(
+                            children: const [
+                              Icon(Icons.location_city, color: Colors.white),
+                              Text(
+                                "30 Km",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  inherit: false, //2.不继承默认样式
+                                ),
+                              )
+                            ],
+                          ),
+                        ],
+                      )),
+                  const SizedBox(height: 20),
+                  // Stack(children: const <Widget>[
                   // 注意顺序
-                  ContentCard(),
-                  LocationIcon(),
-                ]),
-              ],
-            )),
+                  const ContentCard(),
+                  // ]),
+                ],
+              ),
+              const LocationIcon(),
+            ])),
       ],
     );
   }
@@ -85,6 +92,7 @@ class ContentCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      margin: const EdgeInsets.all(0),
       clipBehavior: Clip.antiAlias,
       shape: const RoundedRectangleBorder(
         //形状
@@ -132,6 +140,9 @@ class ContentCard extends StatelessWidget {
             UserImage(),
           ],
         ),
+        const SizedBox(
+          height: 20,
+        ),
         const CardFlex()
       ]),
     );
@@ -145,14 +156,14 @@ class UserImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 50,
-      height: 50,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(50),
+      padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+      child: ClipOval(
+        child: Image.network(
+            "https://img1.baidu.com/it/u=1845556535,2973910963&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500",
+            width: 50,
+            height: 50,
+            fit: BoxFit.cover),
       ),
-      child: Image.network(
-          "https://img1.baidu.com/it/u=1845556535,2973910963&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500",
-          fit: BoxFit.cover),
     );
   }
 }
@@ -167,7 +178,7 @@ class IconAndUser extends StatelessWidget {
         flex: 1,
         child: Row(
           children: const [
-            Icon(Icons.lock_clock),
+            Icon(Icons.message),
             Text(
               "30 DAYS",
               style: TextStyle(
@@ -186,12 +197,23 @@ class LocationIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Positioned(
-        top: 0,
+    return Positioned(
+        top: 260,
         right: 40,
-        child: Icon(
-          Icons.local_airport_sharp,
-          color: Colors.blue,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(20),
+          child: Container(
+            width: 40,
+            height: 40,
+            decoration: const BoxDecoration(color: Colors.white, boxShadow: [
+              // 配置阴影
+              BoxShadow(color: Colors.black, blurRadius: 1)
+            ]),
+            child: const Icon(
+              Icons.local_airport_sharp,
+              color: Color.fromARGB(255, 135, 239, 153),
+            ),
+          ),
         )
         /*   child: IconButton(
         icon: const Icon(
@@ -211,23 +233,32 @@ class CardFlex extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+        margin: const EdgeInsets.all(0),
         color: const Color.fromARGB(196, 251, 245, 245),
         shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(20)),
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20), topRight: Radius.circular(20)),
         ),
         child: Padding(
             padding: const EdgeInsets.all(10),
             child: Column(children: [
               const FlexWrap(),
               const SizedBox(
-                height: 10,
+                height: 20,
               ),
               Flex(
                 direction: Axis.horizontal,
                 children: [
                   Expanded(
                       child: ElevatedButton(
-                    child: const Text("normal"),
+                    style: ButtonStyle(
+                      shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20))),
+                    ),
+                    child: const Padding(
+                      padding: EdgeInsets.all(16.0),
+                      child: Text("normal"),
+                    ),
                     onPressed: () {},
                   ))
                 ],

@@ -27,6 +27,8 @@ samples, guidance on mobile development, and a full API reference.
 # 如何运行
 ```
 flutter run
+
+flutter run --no-sound-null-safety
 ```
 
 # app介绍

@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       ),
       debugShowMaterialGrid: false,
       debugShowCheckedModeBanner: false,
-      initialRoute: "/FoundPage",
+      initialRoute: "/PassengerPage",
       onGenerateRoute: onGenerateRoute,
     );
   }

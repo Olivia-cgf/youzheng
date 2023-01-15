@@ -9,14 +9,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
-class SwiperPage extends StatefulWidget {
-  const SwiperPage({super.key});
+class BankCard extends StatefulWidget {
+  const BankCard({super.key});
 
   @override
-  State<SwiperPage> createState() => _SwiperPageState();
+  State<BankCard> createState() => _BankCardState();
 }
 
-class _SwiperPageState extends State<SwiperPage> {
+class _BankCardState extends State<BankCard> {
   // 轮播图片
   List<Map> imageList = [
     {"url": "images/1.jpg"},
@@ -35,7 +35,7 @@ class _SwiperPageState extends State<SwiperPage> {
         width: double.infinity,
         child: AspectRatio(
           // 配置宽高比
-          aspectRatio: 9 / 12,
+          aspectRatio: 1 / 1,
           child: Swiper(
             viewportFraction: 0.8,
             scale: 0.8, // 间距
